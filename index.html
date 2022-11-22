@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@556&display=swap" rel="stylesheet">
+   
+    <style>
+        .overall{
+          
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+   
+        }
+        h3{
+            color:rgba(0, 0, 0, 0.527);
+        }
+        h2{
+            color: rgba(255, 255, 255, 0.63);
+            font-size: 50px;
+            font-family:  sans-serif;
+            text-align: center;
+        }
+        h1{
+            color: rgb(14, 63, 95);
+            font-size: 40px;
+            font-weight: 800;
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+        }
+        body{
+            background: linear-gradient(to right,#ffd89b,#19547b);
+            height: 100vh;
+        }
+        .container{
+            width: 700px;
+            margin: 0 auto;
+    
+        }
+        .box{
+            width: 500px;
+            height: 200px;
+            border-radius: 10px;
+            background-color: #ffd99b70;
+            flex-direction: column;
+            border: 10px solid rgba(128, 128, 128, 0.616);
+            display: flex;
+            justify-content: center;
+            align-items:inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>DIGITAL COLCK</h2>
+        <div class="overall">
+            
+            <div class="box">
+                <h1><span id="hrs">00</span>: <span id="min">00</span> : <span id="sec">00</span> <span id="pm">PM</span></h1>
+                <h3><span id="day"></span>  <span id="month"></span>  <span id="year"></span></h3>
+            </div>
+            
+        </div>
+    </div>
+    
+</body>
+<script>
+    let h1=document.getElementsByTagName("h1")
+    let hrs=document.getElementById("hrs")
+    let min=document.getElementById("min")
+    let sec=document.getElementById("sec")
+    let eve=document.getElementById("pm")
+
+let val=0
+    setInterval(()=>{
+
+        let date=new Date()
+    let Nhrs=date.getHours()
+
+    hrs.innerText=Nhrs
+    let Nmin=date.getMinutes()
+    min.innerText=Nmin
+    let Nsec=date.getSeconds()
+    sec.innerText=Nsec
+        if(Nhrs>12){
+            Nhrs-=12
+            // eve.innerText="AM"
+           
+        }
+        if(Nhrs==12 && Nmin==1 && Nsec==1){
+           
+            val+=1
+            console.log(val)
+            if(val%2==0){
+            eve.innerText="AM"
+            }else{
+                eve.innerText="PM"
+            }
+        }
+        
+
+    Nsec<10?  sec.innerText="0"+Nsec :sec.innerText=Nsec
+    Nhrs<10?  hrs.innerText="0"+Nhrs :hrs.innerText=Nhrs
+    Nmin<10?  min.innerText="0"+Nmin :min.innerText=Nmin
+    //     console.log("saktj")
+    },1000)
+
+    const arr=["January","February","March","April","May","June","July","Aguest","September","October","November","December"]
+
+    var fullday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"]
+    setInterval(()=>{
+    let year=document.getElementById("year")
+    let month=document.getElementById("month")
+    let day=document.getElementById("day")
+
+    let date=new Date()
+    let yr=date.getFullYear()
+        year.innerText=yr
+
+     
+    let mon=date.getMonth() 
+   month.innerText=arr[mon]
+ 
+
+
+   let da=date.getDay()
+  console.log(da);
+        day.innerText=fullday[da]
+},1000)
+
+</script>
+</html>
